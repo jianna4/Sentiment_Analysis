@@ -31,3 +31,21 @@ history = model.fit(train_data, train_labels, epochs=10, validation_split=0.2, b
 # Evaluate
 results = model.evaluate(test_data, test_labels)
 print(results)
+
+#saving model for later loading
+model.save("model.h5")
+#testing
+index=[0]
+
+test_data = sequence.pad_sequences(test_data, maxlen=MAXLEN)
+
+prediction= model.predict(test_data)
+
+print("True Label:", test_labels[index])  # 0 = negative, 1 = positive
+value = prediction[0][0]   # or float(prediction)
+if value > 0.5:
+    print("Positive")
+else:
+    print("Negative")
+
+print("confidence score:",prediction[0][0])
