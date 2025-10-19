@@ -61,7 +61,10 @@ word_index=imdb.get_word_index()
 def encode_text(text):
     token = text_to_word_sequence(text)
     token= [word_index.get(word, 0) for word in token]
-    return sequence.pad_sequences([token],MAXLEN)[0]
+    return sequence.pad_sequences([token],MAXLEN)
 
-text = "that movie was so amaizing"
+text = "that movie was so so nice"
 print(encode_text(text))
+
+#preiction
+model.predict(encode_text(text))
