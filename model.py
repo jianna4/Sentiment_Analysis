@@ -49,3 +49,19 @@ else:
     print("Negative")
 
 print("confidence score:",prediction[0][0])
+
+
+#testing with actual text
+
+from tensorflow.keras.preprocessing.text import text_to_word_sequence
+
+#more testing, from normal perspective
+#first e need to encode our teaxt just as imdb does so:
+word_index=imdb.get_word_index()
+def encode_text(text):
+    token = text_to_word_sequence(text)
+    token= [word_index.get(word, 0) for word in token]
+    return sequence.pad_sequences([token],MAXLEN)[0]
+
+text = "that movie was so amaizing"
+print(encode_text(text))
